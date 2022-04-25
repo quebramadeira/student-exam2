@@ -11,7 +11,7 @@ pipeline {
         timestamps()
     }
     // environment {
-      // PATH="/var/lib/jenkins/miniconda3/bin:$PATH"
+      // PATH="$PATH"
    // }
 
     stages {
@@ -21,7 +21,7 @@ pipeline {
                 checkout scm
             }
         }
-        stage('Build environment') {
+        stage('Install') {
             steps {
                 sh '''python3 -m venv venv
                       . venv/bin/activate 
@@ -29,7 +29,7 @@ pipeline {
                     '''
             }
         }
-        stage('Test environment') {
+        stage('Test') {
             steps {
                 sh '''python3 -m venv venv
                 . venv/bin/activate
