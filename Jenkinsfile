@@ -39,12 +39,9 @@ pipeline {
                 sh 'echo "Tests passed"'
             }
         }
-stage('Build image') {
+stage('build image') {
+    step([$class: 'DockerBuilderPublisher', cleanImages: false, cleanupWithJenkinsJobDelete: false, cloud: 'Docker', dockerFileDirectory: '', fromRegistry: 'https://github.com/quebramadeira/student-exam2/', pushCredentialsId: 'docker', pushOnSuccess: true, tagsString: 'quebramadeira/examapp:$BUILD_NUMBER']) }
 
-	steps {
-		sh 'docker build -t quebramadeira/examapp:latest .'
-	}
-}
 
 stage('Login') {
 
