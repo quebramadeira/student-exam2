@@ -41,8 +41,9 @@ pipeline {
         }
 stage('build image') {
 	steps {
-    step([$class: 'DockerBuilderPublisher', cleanImages: false, cleanupWithJenkinsJobDelete: false, cloud: 'Docker', dockerFileDirectory: '', fromRegistry: 'https://github.com/quebramadeira/student-exam2/', pushCredentialsId: 'docker', pushOnSuccess: true, tagsString: 'quebramadeira/examapp:$BUILD_NUMBER'])
-         }
+   steps {
+step([$class: 'DockerBuilderPublisher', cleanImages: true, cleanupWithJenkinsJobDelete: false, cloud: 'Docker', dockerFileDirectory: './', fromRegistry: [], pushCredentialsId: 'docker', pushOnSuccess: true, tagsString: 'quebramadeira/examapp:$BUILD_NUMBER']) 
+              }
 }
 stage('Login') {
 
