@@ -41,9 +41,9 @@ pipeline {
         }
 stage('build image') {
 	steps {
-   step([$class: 'DockerBuilderPublisher', cleanImages: true, cleanupWithJenkinsJobDelete: false, cloud: 'Docker', dockerFileDirectory: './', fromRegistry: [], pushCredentialsId: 'docker', pushOnSuccess: true, tagsString: 'quebramadeira/examapp:$BUILD_NUMBER']) 
-              }
+   step([$class: 'DockerBuilderPublisher', cleanImages: true, cleanupWithJenkinsJobDelete: false, cloud: 'Docker', dockerFileDirectory: './', fromRegistry: [credentialsId: 'docker', url: 'https://hub.docker.com/repository/docker/quebramadeira/examapp'], pushCredentialsId: 'docker', pushOnSuccess: true, tagsString: 'quebramadeira/examapp'])
 }
+}	
 stage('Login') {
 
 	steps {
