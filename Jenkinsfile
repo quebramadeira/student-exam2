@@ -36,6 +36,7 @@ pipeline {
                 coverage run -m pytest 
                       coverage report
                        '''
+                sh 'echo "Tests passed"'
             }
         }
     }
