@@ -25,13 +25,15 @@ pipeline {
             steps {
                 sh '''python3 -m venv venv
                       . venv/bin/activate 
-                      pip install -e '.[test]'
+                      pip install -e .
                     '''
             }
         }
         stage('Test environment') {
             steps {
-                sh '''coverage run -m pytest 
+                sh '''python3 -m venv venv
+                . venv/bin/activate
+                coverage run -m pytest 
                       coverage report
                        '''
             }
