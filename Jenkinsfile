@@ -44,19 +44,6 @@ stage('build image') {
    step([$class: 'DockerBuilderPublisher', cleanImages: true, cleanupWithJenkinsJobDelete: false, cloud: 'Docker', dockerFileDirectory: './', fromRegistry: [credentialsId: 'docker', url: 'https://hub.docker.com/repository/docker/quebramadeira/examapp'], pushCredentialsId: 'docker', pushOnSuccess: true, tagsString: 'quebramadeira/examapp:$BUILD_NUMBER'])
 }
 }	
-stage('Login') {
-
-	steps {
-		sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
-	}
-}
-
-stage('Push image') {
-
-	steps {
-		sh 'docker push quebramadeira/examapp:latest'
-	}
-}
     }
     post {
         always {
