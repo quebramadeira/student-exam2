@@ -47,7 +47,7 @@ stage('Build and push image') {
     }
     post {
         always {
-            echo "finished testing and pushing app image"
+            echo "finished testing and pushing app image to Docker Hub"
         }
         failure {
             echo "failure"
